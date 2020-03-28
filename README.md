@@ -37,10 +37,9 @@ https://api.neoscan.io/api/main_net/v1/get_balance/Ae2d6qj91YL3LVUMkza7WQsaTYjzj
 https://api.zcha.in/v2/mainnet/accounts/t1N26vuBpBG9oTZ3ixtHxrhbhDWA24NPaji
   limit none
 
-* To-do:
-
- * [ ] popup script sends message
- [ ] browser.runtime.sendMessage({action : "refresh"});
- [ ] browser.runtime.sendMessage({action : "add", currency : address};
-* [ ] background script
-  [ ] chrome.runtime.onMessage.addListener(handleMessage);
+- To-do:
+ [ ] popup script sends message
+ * [ ] browser.runtime.sendMessage({action : "refresh"});
+ * [ ] browser.runtime.sendMessage({action : "add", currency : address};
+ [ ] background script
+ * [ ] chrome.runtime.onMessage.addListener(handleMessage);
