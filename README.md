@@ -1,7 +1,7 @@
 # etherTail-extension
 Watch and track Ethereum wallet total valuation
 
-This extension allows you to track the total USD value of any Ethereum (ETH) address, BTC wallet...
+This extension allows you to track the total USD value of Ethereum (ETH), BTC wallet...
 
 ### Supported crypto currencies
 
@@ -12,7 +12,6 @@ https://api.blockcypher.com/v1/btc/main/addrs/16ftSEQ4ctQFDtVZiUBusQUjRrGhM3JYwe
 * BitcoinCash/BCH, `'bitcoincash'` or `'BCH'`
 https://rest.bitcoin.com/v2/address/details/1NNAdw8phoJcQYJVvNKuD3QebGhdpWqNiW
 limit none
-
 
 * Dash, `'dash'` or `'DASH'`
  //https://api.blockcypher.com/v1/dash/main/addrs/XuFndxnFaaUvGavxp5QPS6YKymvmCy5iqm/balance
@@ -38,10 +37,11 @@ https://api.neoscan.io/api/main_net/v1/get_balance/Ae2d6qj91YL3LVUMkza7WQsaTYjzj
 https://api.zcha.in/v2/mainnet/accounts/t1N26vuBpBG9oTZ3ixtHxrhbhDWA24NPaji
   limit none
 
+* To-do:
 
-[ ] popup script sends message
-  [ ] browser.runtime.sendMessage({action : "refresh"});
-  [ ] browser.runtime.sendMessage({action : "add", currency : address};
-[ ] background script
-  [ ] chrome.runtime.onMessage.addListener(handleMessage);
-    [ ]
+ *[ ] popup script sends message
+  *[ ] browser.runtime.sendMessage({action : "refresh"});
+  *[ ] browser.runtime.sendMessage({action : "add", currency : address};
+*[ ] background script
+  *[ ] chrome.runtime.onMessage.addListener(handleMessage);
+    *[ ]
