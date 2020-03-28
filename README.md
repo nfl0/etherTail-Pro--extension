@@ -38,8 +38,8 @@ https://api.zcha.in/v2/mainnet/accounts/t1N26vuBpBG9oTZ3ixtHxrhbhDWA24NPaji
   limit none
 
 - To-do:
- [ ] popup script sends message
+ - popup script sends message
  * [ ] browser.runtime.sendMessage({action : "refresh"});
  * [ ] browser.runtime.sendMessage({action : "add", currency : address};
- [ ] background script
+ - background script
  * [ ] chrome.runtime.onMessage.addListener(handleMessage);
