@@ -39,9 +39,9 @@ https://api.zcha.in/v2/mainnet/accounts/t1N26vuBpBG9oTZ3ixtHxrhbhDWA24NPaji
 
 * To-do:
 
- *[ ] popup script sends message
-  *[ ] browser.runtime.sendMessage({action : "refresh"});
-  *[ ] browser.runtime.sendMessage({action : "add", currency : address};
-*[ ] background script
-  *[ ] chrome.runtime.onMessage.addListener(handleMessage);
-    *[ ]
+ * [ ] popup script sends message
+  * [ ] browser.runtime.sendMessage({action : "refresh"});
+  * [ ] browser.runtime.sendMessage({action : "add", currency : address};
+* [ ] background script
+  * [ ] chrome.runtime.onMessage.addListener(handleMessage);
+    * [ ]
