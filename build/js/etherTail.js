@@ -3,7 +3,7 @@ var walletInput=document.getElementById("new-wallet"); //Add a new wallet.
 var addButton=document.getElementById("add"); //add button
 var walletsHolder=document.getElementById("wallets"); //ul of #wallets
 
-
+var data;
 
 //New Wallet list item
 var createNewWalletElement=function(walletString){
@@ -32,55 +32,12 @@ var createNewWalletElement=function(walletString){
 	return listItem;
 }
 
-//Wallet class
-var Wallet = function (address, currency) {
-  this.address = address;
-  this.currency = currency;
-	var balance=0;
 
+//Send data to bg.js
 
-
-	this.add = function () {
-    //console.log(this.currency+" : "+this.address);
-		var walletData = {[this.currency] : this.address};
-		localStorage.setItem("wallets", JSON.stringify(walletData));
-		var retrievedObject = localStorage.getItem("wallets");
-		console.log('retrievedObject: ', JSON.parse(retrievedObject));
-		console.log("wallet added.");
-  };
-
-  this.refresh = function () {
-    console.log("wallet refreshed.");
-  };
-  this.delete = function () {
-    console.log("wallet deleted.");
-  };
-};
-
-//simulate local storage
-async function storage(request){
-	//console.log(request);
-	var action = request.action;
-	var currency = request.currency;
-	var address = request.address;
-	var wallet = new Wallet(address, currency);
-
-	//console.log(wallet);
-	switch(action) {
-  case "ref":
-    wallet.refresh();
-    break;
-  case "add":
-		wallet.add();
-    break;
-	case "del":
-	  wallet.delete();
-	   break;
+function sendData(data){
+	browser.runtime.sendMessage(data);
 }
-
-}
-
-
 
 //validate input
 function validate(walletAddress){
@@ -89,7 +46,7 @@ function validate(walletAddress){
 	if(walletAddress){
 		for(var i=0; i<8; i++){
 			if(WAValidator.validate(walletAddress, currency[i])){
-				return {action : "add", address : walletAddress, currency : currency[i]};
+				return {action : "add", currency : currency[i], address : walletAddress};
 		  }
 		}
 		console.log("Address incorrect or Not supported!");
@@ -98,9 +55,9 @@ function validate(walletAddress){
 
 var addWallet=async function(){
 	console.log("Adding Wallet...");
-	var data = validate(walletInput.value);
+	data = validate(walletInput.value);
 	if(data){
-		storage(data);
+		sendData(data);
 		//Create a new list item with the text from the #new-wallet:
 		var listItem=createNewWalletElement(walletInput.value);
 
@@ -121,8 +78,8 @@ var deleteWallet=function(){
 		var ul=listItem.parentNode;
 		var walletAddress = listItem.childNodes[0].innerText;
 
-		var data = {action : "del", address : walletAddress};
-		storage(data);
+		data = {action : "del", address : walletAddress};
+		sendData(data);
 		//Remove the parent list item from the ul.
 		ul.removeChild(listItem);
 
@@ -146,3 +103,20 @@ var bindWalletEvents=function(walletListItem){
 	var deleteButton=walletListItem.querySelector("button.delete");
 			deleteButton.onclick=deleteWallet;
 }
+//handleMessage from background
+function handleMessage(request){
+  console.log(Object.keys(request)[0]);
+  var listItem=createNewWalletElement(Object.keys(request)[0]);
+
+  //Append listItem to walletsHolder
+  walletsHolder.appendChild(listItem);
+  bindWalletEvents(listItem);
+}
+
+//fetch wallets
+function fetchWallets(){
+  data = {action : "lst"};
+  sendData(data);
+}
+chrome.runtime.onMessage.addListener(handleMessage);
+fetchWallets();
