@@ -1,0 +1,21 @@
+{
+    "name": "Demo",
+    "manifest_version": 2,
+    "version": "1",
+
+    "background": {
+        "scripts": ["bg.js"]
+    },
+
+    "browser_action": {
+        "default_title": "Data not yet available",
+        "browser_style": true,
+        "default_popup": "popup.html"
+    },
+
+    "applications": {
+        "gecko": {
+        "id": "test@example.com"
+        }
+    }
+}

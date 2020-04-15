@@ -5,6 +5,8 @@ var walletsHolder=document.getElementById("wallets"); //ul of #wallets
 
 var data;
 
+const wallet_sample=["36EEHh9ME3kU7AZ3rUxBCyKR5FhR3RbqVo","0x3af9fe35d280ada5a5edb1bef3ed872a3231d73c","36EEHh9ME3kU7AZ3rUxBCyKR5FhR3RbqVo", "7gnwGHt17heGpG9Crfeh4KGpYNFugPhJdh","DMr3fEiVrPWFpoCWS958zNtqgnFb7QWn9D", "MQeMWvsEB74AEYJ32W2pHJ3fM4aWJjpeLs","AXSoNQEKjmqPBNPg5cNrHyWivfjok3Vj9D","t1WLeAK9npDSRg7SAM5DMJSeYk45aCvpcdX"];
+
 //New Wallet list item
 var createNewWalletElement=function(walletString){
 
@@ -23,8 +25,6 @@ var createNewWalletElement=function(walletString){
 
 	deleteButton.innerText="Delete";
 	deleteButton.className="delete";
-
-
 
 	//and appending.
 	listItem.appendChild(label);
@@ -85,9 +85,6 @@ var deleteWallet=function(){
 
 }
 
-var ajaxRequest=()=>{
-	console.log("AJAX Request");
-}
 
 //The glue to hold it all together.
 
@@ -104,14 +101,19 @@ var bindWalletEvents=function(walletListItem){
 			deleteButton.onclick=deleteWallet;
 }
 //handleMessage from background
+
 function handleMessage(request){
-  console.log(Object.keys(request)[0]);
+	console.log(request);
+/*
+	console.log(Object.keys(request)[0]);
   var listItem=createNewWalletElement(Object.keys(request)[0]);
 
   //Append listItem to walletsHolder
   walletsHolder.appendChild(listItem);
   bindWalletEvents(listItem);
+	*/
 }
+
 
 //fetch wallets
 function fetchWallets(){
